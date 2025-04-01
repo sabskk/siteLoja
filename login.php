@@ -2,7 +2,7 @@
 
 // fazer conexão com o banco
 $conectar = mysql_connect("localhost","root","");
-$banco = mysql_select_db("escola");
+$banco = mysql_select_db("loja");
 
 // if para a opção dos botões
 if(isset($_POST['enviar'])){

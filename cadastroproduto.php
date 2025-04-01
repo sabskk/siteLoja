@@ -35,24 +35,17 @@ if(isset($_POST['enviar'])){
             values('$nome','$descricao', '$cor', '$tamanho', '$preco', '$cod_marca', '$cod_categoria', '$cod_tipo', '$novo_nome1', '$novo_nome2')");
    
     // analisar resultado
-    // AQUI ELE PODE MOSTRAR UM POP UP DE DADOS CADASTRADOS SÓ QUE DIRETO NA PÁGINA INICIAL
     if (mysql_affected_rows() > 0) {
         echo "<script>alert('Cadastro atualizado com sucesso!'); window.location='cadastroproduto.html';</script>";
-    } else {
+    }
+    else {
         echo "<script>alert('Não foi possível atualizar o cadastro: " . mysql_error() . "'); window.location='cadastroproduto.html';</script>";
     }
 }
 
 if(isset($_POST['alterar'])){
     $codigo = $_POST['codigo'];
-    $nome = $_POST['nome'];
-    $descricao = $_POST['descricao'];
-    $cor = $_POST['cor'];
-    $tamanho = $_POST['tamanho'];
     $preco = $_POST['preco'];
-    $cod_marca = $_POST['cod_marca'];
-    $cod_categoria = $_POST['cod_categoria'];
-    $cod_tipo = $_POST['cod_tipo'];
 
     $sql = "update produto set preco='$preco' where codigo='$codigo'";
 
@@ -60,7 +53,8 @@ if(isset($_POST['alterar'])){
 
     if (mysql_affected_rows() > 0) {
         echo "<script>alert('Cadastro atualizado com sucesso!'); window.location='cadastroproduto.html';</script>";
-    } else {
+    }
+    else {
         echo "<script>alert('Não foi possível atualizar o cadastro: " . mysql_error() . "'); window.location='cadastroproduto.html';</script>";
     }
 }
@@ -76,7 +70,8 @@ if(isset($_POST['excluir']))
 
     if (mysql_affected_rows() > 0) {
         echo "<script>alert('Cadastro excluído com sucesso!'); window.location='cadastroproduto.html';</script>";
-    } else {
+    }
+    else {
         echo "<script>alert('Não foi possível excluir o cadastro: " . mysql_error() . "'); window.location='cadastroproduto.html';</script>";
     }
 }
@@ -92,10 +87,21 @@ if(isset($_POST['pesquisar'])){
         echo "Erro. Tente novamente";
     }
     else{
-        echo "<b>"."Pesquisa de Tipo: "."</b><br>";
+        echo "<b>"."Pesquisa de Produto: "."</b><br>";
         
-        while ($dados = mysql_fetch_array($resultado)){
-                echo "Código: ".$dados['codigo']."<br>"."Nome: ".$dados['nome']."<br>";
+        while ($dados = mysql_fetch_object($resultado)){
+                echo "Código: ".$dados->codigo."<br>";
+                echo "Nome: ".$dados->nome."<br>";
+                echo "Descrição: ".$dados->descricao."<br>";
+                echo "Cor: ".$dados->cor."<br>";
+                echo "Tamanho: ".$dados->tamanho."<br>";
+                echo "Preco: ".$dados->preco."<br>";
+                echo "Marca: ".$dados->codmarca."<br>";
+                echo "Categoria: ".$dados->codcategoria."<br>";
+                echo "Tipo: ".$dados->codtipo."<br>";
+
+                echo '<img src="imgbanco/'.$dados->foto1.'"height="200" widht="200" />'." ";
+                echo '<img src="imgbanco/'.$dados->foto2.'"height="200" widht="200" />';
             }
     }
 }

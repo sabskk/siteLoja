@@ -17,7 +17,6 @@ if(isset($_POST['enviar'])){
     $resultado = mysql_query($sql);
 
     // analisar resultado
-    // AQUI ELE PODE MOSTRAR UM POP UP DE DADOS CADASTRADOS SÓ QUE DIRETO NA PÁGINA INICIAL
     if ($resultado == TRUE){
         echo("Dados gravados com sucesso.");
     }
