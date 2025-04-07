@@ -28,3 +28,38 @@ if(isset($_POST['enviar'])){
 }
 
 ?>
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title> Login de Usuário </title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <div class="mainarea">
+
+        <div id="menublock">
+
+            <form name="formulario" method="post" action="login.php">
+
+                <h2> Usuário: </h2>
+                Login: <input type="text" name="login" id="login" size="10">
+                <br><br>
+                Senha: <input type="password" name="senha" id="senha" size="10">
+                <br><br>
+                <input type="submit" name="enviar" id="enviar" value="Entrar">
+
+            </form>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>
