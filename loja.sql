@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tempo de Geração: 27/03/2025 às 21h13min
+-- Tempo de Geração: 10/04/2025 às 22h16min
 -- Versão do Servidor: 5.5.20
 -- Versão do PHP: 5.3.9
 
@@ -52,14 +52,22 @@ CREATE TABLE IF NOT EXISTS `marca` (
   `codigo` int(5) NOT NULL AUTO_INCREMENT,
   `nome` varchar(30) NOT NULL,
   PRIMARY KEY (`codigo`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
 
 --
 -- Extraindo dados da tabela `marca`
 --
 
 INSERT INTO `marca` (`codigo`, `nome`) VALUES
-(1, 'Adidas');
+(1, 'Adidas'),
+(2, 'Nike'),
+(3, 'Mikasa'),
+(4, 'Penalty'),
+(5, 'Puma'),
+(6, 'Asics'),
+(7, 'Reebok'),
+(8, 'Vans'),
+(9, 'GenÃ©rico');
 
 -- --------------------------------------------------------
 
@@ -83,7 +91,7 @@ CREATE TABLE IF NOT EXISTS `produto` (
   KEY `codmarca` (`codmarca`),
   KEY `codcategoria` (`codcategoria`),
   KEY `codtipo` (`codtipo`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
 
 --
 -- Extraindo dados da tabela `produto`
@@ -91,8 +99,15 @@ CREATE TABLE IF NOT EXISTS `produto` (
 
 INSERT INTO `produto` (`codigo`, `nome`, `descricao`, `cor`, `tamanho`, `preco`, `codmarca`, `codcategoria`, `codtipo`, `foto1`, `foto2`) VALUES
 (1, 'Camiseta Adidas', 'Camiseta de poliÃ©ster projetada para treinos.', 'Branco', 'M', 200.00, 1, 5, 1, '957f7a2ceecaf86c396aa3af3bde1d36', '0775b07586ce47a073f1d61824afca85'),
-(2, 'Camiseta Manga Longa Adidas', 'Camiseta de manga longa de poliÃ©ster projetada para corridas.', 'Preto', 'P', 150.00, 1, 1, 1, '29009b68ca4f58392684d06b3a2fbd57', '8cec91cefaf1241df8f5f70e5e8b32b3'),
-(3, 'Regata Adidas', 'Regata projetada para treinos.', 'Vermelho', 'G', 150.00, 1, 1, 1, '0bb7a129631e6bcf2d13c648eed39d75', '6ae522f9d97d3e790fe9388e8290bcc8');
+(3, 'Regata Adidas', 'Regata projetada para treinos.', 'Vermelho', 'G', 150.00, 1, 1, 1, '0bb7a129631e6bcf2d13c648eed39d75', '6ae522f9d97d3e790fe9388e8290bcc8'),
+(4, 'Camiseta Manga Longa Adidas', 'Camiseta de manga longa de poliÃ©ster projetada para treinos.', 'Preto', 'P', 250.00, 1, 1, 1, 'aa15c73740690d0a971e80b56fdfd1ef', '651f162714cd2b391bad4c9155975dbe'),
+(5, 'TÃªnis SK8-HI Vans', 'TÃªnis de cano alto, fechamento com cadarÃ§o e solado emborrachado.', 'Preto', '39', 399.90, 8, 5, 2, '4c43e298246538eaf83cd372a966ec68', 'c3b1b4b5ea09a5b98d8d09b7eb35b9d0'),
+(6, 'TÃªnis Old School Vans', 'TÃªnis de cano baixo, fechamento com cadarÃ§o e solado emborrachado.', 'Azul e Preto', '36', 379.90, 8, 5, 2, 'a5d3cc2e8d7121a436580abc0485c36b', 'db34ec851771c7d5be4dad94e9a950a5'),
+(7, 'Bola de VÃ´lei V200W Mikasa', 'CircunferÃªncia de 65-67cm, peso de 260-280g.', 'Amarelo e Azul', 'Ãšnic', 1.10, 3, 5, 5, '71aaced8d3342981cd7f2a4eb2a1741a', 'cb2f8e044854581b65f6f7a36b3e059f'),
+(8, 'Kit de ProteÃ§Ã£o Infantil', '1 Capacete + 1 Par Joelheiras + 1 Par Cotoveleiras.', 'Rosa', 'Ãšnic', 129.99, 9, 3, 4, '672fc547932bf9cc57e5345cb5640c90', 'f67d5d1894c6efa0bcd6ceeacd993580'),
+(9, 'Shorts Nike Go Feminino', 'Shorts de lycra confeccionado para treinos.', 'Verde', 'PP', 379.99, 2, 2, 1, 'c76b66f03ddddfadd84de376f34e7b46', '1639d9120f8144705eb9c0e7c3d17206'),
+(10, 'BlusÃ£o Nike Infantil', 'Fleece super leve possui toque super macio e felpudo por dentro.', 'Roxo', '14', 219.99, 2, 3, 1, 'ec370ba10e6c7ef1d3bf76710e0f5be0', '8ebe6dd517ea5d48305a6d5c4abfc48e'),
+(11, 'Viseira Nike Dri-FIT', 'Tecnologia Nike Dri-FIT absorve o suor da sua pele para evaporaÃ§Ã£o mais rÃ¡pida, ajudando a manter', 'Rosa', 'Ãšnic', 149.99, 2, 2, 4, 'c94c8b87ef219f3e580bfddec7978b81', 'bab855691326301d09088c4daae671cc');
 
 -- --------------------------------------------------------
 
@@ -104,7 +119,7 @@ CREATE TABLE IF NOT EXISTS `tipo` (
   `codigo` int(5) NOT NULL AUTO_INCREMENT,
   `nome` varchar(30) NOT NULL,
   PRIMARY KEY (`codigo`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
 
 --
 -- Extraindo dados da tabela `tipo`
@@ -115,6 +130,26 @@ INSERT INTO `tipo` (`codigo`, `nome`) VALUES
 (2, 'Calçados'),
 (4, 'Acessórios'),
 (5, 'Itens');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `usuario`
+--
+
+CREATE TABLE IF NOT EXISTS `usuario` (
+  `codigo` int(5) NOT NULL AUTO_INCREMENT,
+  `login` varchar(50) NOT NULL,
+  `senha` varchar(50) NOT NULL,
+  PRIMARY KEY (`codigo`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Extraindo dados da tabela `usuario`
+--
+
+INSERT INTO `usuario` (`codigo`, `login`, `senha`) VALUES
+(1, 'sabs', '123');
 
 --
 -- Restrições para as tabelas dumpadas

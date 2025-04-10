@@ -9,19 +9,16 @@ if(isset($_POST['enviar'])){
 
     // capturar as variáveis inseridas no HTML
     $nome = $_POST['nome'];
-
-    // variável que guarda o comando SQL pro BD
-    $sql = "insert into marca(nome) values('$nome')";
-
+    
     // mandar executar comando SQL
-    $resultado = mysql_query($sql);
+    $sql = mysql_query("insert into marca(nome) values('$nome')");
 
     // analisar resultado
-    if ($resultado == TRUE){
-        echo("Dados gravados com sucesso.");
+    if (mysql_affected_rows() > 0) {
+        echo "<script>alert('Cadastro atualizado com sucesso!'); window.location='cadastromarca.php';</script>";
     }
-    else{
-        echo("Erro. Tente novamente.");
+    else {
+        echo "<script>alert('Não foi possível atualizar o cadastro: " . mysql_error() . "'); window.location='cadastromarca.php';</script>";
     }
 }
 
@@ -29,15 +26,13 @@ if(isset($_POST['alterar'])){
     $codigo = $_POST['codigo'];
     $nome = $_POST['nome'];
 
-    $sql = "update marca set nome = '$nome' where codigo = '$codigo'";
+    $sql = mysql_query("update marca set nome = '$nome' where codigo = '$codigo'");
 
-    $resultado = mysql_query($sql);
-
-    if ($resultado == TRUE){
-        echo("Dados alterados com sucesso!");
+    if (mysql_affected_rows() > 0) {
+        echo "<script>alert('Dados alterados com sucesso!'); window.location='cadastrocategoria.php';</script>";
     }
-    else{
-        echo("Erro. Tente novamente.");
+    else {
+        echo "<script>alert('Não foi possível atualizar o cadastro: " . mysql_error() . "'); window.location='cadastrocategoria.php';</script>";
     }
 }
 
@@ -45,28 +40,25 @@ if(isset($_POST['excluir'])){
     $codigo = $_POST['codigo'];
     $nome = $_POST['nome'];
 
-    $sql = "delete * from marca where codigo = '$codigo'";
+    $sql = mysql_query("delete * from marca where codigo = '$codigo'");
 
-    $resultado = mysql_query($sql);
-
-    if ($resultado == TRUE){
-        echo("Dados excluídos com sucesso!");
+    if (mysql_affected_rows() > 0) {
+        echo "<script>alert('Cadastro escluído com sucesso!'); window.location='cadastrocategoria.php';</script>";
     }
-    else{
-        echo("Erro. Tente novamente.");
+    else {
+        echo "<script>alert('Não foi possível excluir o cadastro: " . mysql_error() . "'); window.location='cadastrocategoria.php';</script>";
     }
 }
 
 if(isset($_POST['pesquisar'])){
     $codigo = $_POST['codigo'];
-    $nome = $_POST['nome'];
 
     $sql = "select * from marca where codigo = '$codigo'";
 
     $resultado = mysql_query($sql);
 
     if (mysql_num_rows($resultado) == 0){
-        echo "Erro. Tente novamente";
+        echo "<script>alert('Não foi possível encontrar o cadastro: " . mysql_error() . "'); window.location='cadastrocategoria.php';</script>";
     }
     else{
         echo "<b>"."Pesquisa de Marca: "."</b><br>";
@@ -78,3 +70,41 @@ if(isset($_POST['pesquisar'])){
 }
 
 ?>
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title> Cadastrar Marca </title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    
+    <div class="mainarea">
+
+        <div id="menublock">
+
+            <form name="formulario" method="post" action="cadastromarca.php">
+
+                <h2> Cadastrar Marca </h2>
+                Código: <input type="text" name="codigo" id="codigo" size="20">
+                <br><br>
+                Nome: <input type="text" name="nome" id="nome" size="20">
+                <br><br>
+                <input type="submit" name="enviar" id="enviar" value="Enviar"> 
+                <input type="submit" name="alterar" id="alterar" value="Alterar"> 
+                <input type="submit" name="excluir" id="excluir" value="Excluir"> 
+                <input type="submit" name="pesquisar" id="pesquisar" value="Pesquisar"> 
+        
+            </form>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

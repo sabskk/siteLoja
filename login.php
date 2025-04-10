@@ -17,7 +17,7 @@ if(isset($_POST['enviar'])){
     if (mysql_num_rows($resultado) == 0){
         echo"<script language='javascript' type='text/javascript'>
                 alert('Login ou Senha incorretos.');
-                window.location.href='login.html'; 
+                window.location.href='login.php'; 
              </script>'";
     }
     else{

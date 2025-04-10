@@ -188,8 +188,8 @@
                     echo "Cor: ".$dados->cor." ";
                     echo "Tamanho: ".$dados->tamanho." ";
                     echo "Preço R$: ".$dados->preco."<br>";
-                    echo '<img src="imgbanco/'.$dados->foto1.'" height="100" width="150" />'." ";
-                    echo '<img src="imgbanco/'.$dados->foto2.'" height="100" width="150" />'."<br><br>";
+                    echo '<img src="imgbanco/'.$dados->foto1.'" height="150" width="150" />'." ";
+                    echo '<img src="imgbanco/'.$dados->foto2.'" height="150" width="150" />'."<br><br>";
                 }
     }
         
