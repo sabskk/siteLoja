@@ -29,10 +29,10 @@ if(isset($_POST['alterar'])){
     $sql = mysql_query("update marca set nome = '$nome' where codigo = '$codigo'");
 
     if (mysql_affected_rows() > 0) {
-        echo "<script>alert('Dados alterados com sucesso!'); window.location='cadastrocategoria.php';</script>";
+        echo "<script>alert('Dados alterados com sucesso!'); window.location='cadastromarca.php';</script>";
     }
     else {
-        echo "<script>alert('Não foi possível atualizar o cadastro: " . mysql_error() . "'); window.location='cadastrocategoria.php';</script>";
+        echo "<script>alert('Não foi possível atualizar o cadastro: " . mysql_error() . "'); window.location='cadastromarca.php';</script>";
     }
 }
 
@@ -43,10 +43,10 @@ if(isset($_POST['excluir'])){
     $sql = mysql_query("delete * from marca where codigo = '$codigo'");
 
     if (mysql_affected_rows() > 0) {
-        echo "<script>alert('Cadastro escluído com sucesso!'); window.location='cadastrocategoria.php';</script>";
+        echo "<script>alert('Cadastro escluído com sucesso!'); window.location='cadastromarca.php';</script>";
     }
     else {
-        echo "<script>alert('Não foi possível excluir o cadastro: " . mysql_error() . "'); window.location='cadastrocategoria.php';</script>";
+        echo "<script>alert('Não foi possível excluir o cadastro: " . mysql_error() . "'); window.location='cadastromarca.php';</script>";
     }
 }
 
@@ -58,7 +58,7 @@ if(isset($_POST['pesquisar'])){
     $resultado = mysql_query($sql);
 
     if (mysql_num_rows($resultado) == 0){
-        echo "<script>alert('Não foi possível encontrar o cadastro: " . mysql_error() . "'); window.location='cadastrocategoria.php';</script>";
+        echo "<script>alert('Não foi possível encontrar o cadastro: " . mysql_error() . "'); window.location='cadastromarca.php';</script>";
     }
     else{
         echo "<b>"."Pesquisa de Marca: "."</b><br>";
@@ -77,11 +77,19 @@ if(isset($_POST['pesquisar'])){
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">   
     <title> Cadastrar Marca </title>
+    <link rel="shortcut icon" href="icon.ico" /> 
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 
 <body>
+
+    <header>
+
+    <a href="pesquisa.php" id="logo"><img src="https://www.sportsstore.it/assets/img/logo.png" height=95></a>
+    <a href="login.php" id="logologin"><img src="https://img.icons8.com/?size=100&id=9ZgJRZwEc5Yj&format=png&color=FFFFFF" height=45></a>
+
+    </header>
     
     <div class="mainarea">
 

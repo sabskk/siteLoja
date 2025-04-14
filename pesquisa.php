@@ -8,8 +8,10 @@
 
 <head>
     <title> Página Inicial </title>
-    <link rel="stylesheet" href="stylesteste.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="icon.ico" /> 
+    <link rel="stylesheet" href="styles.css"><link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Special+Gothic&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -26,7 +28,7 @@
         <form name="formulario" method="post" action="pesquisa.php" id="formpesquisa">
 
             <!-- pesquisar Categorias -->
-            <p>Categorias: </p>
+            <label>Categorias: </label>
             <select name="categoria">
             <option value="" selected="selected">Selecione...</option>
 
@@ -41,7 +43,7 @@
             </select>
 
             <!-- pesquisar Tipo -->
-            <p>Tipos: </p>
+            <label>Tipos: </label>
             <select name="tipo">
             <option value="" selected="selected">Selecione...</option>
 
@@ -56,7 +58,7 @@
             </select>
 
             <!-- pesquisar Marcas -->
-            <p>Marcas: </p>
+            <label>Marcas: </label>
             <select name="marca">
             <option value="" selected="selected">Selecione...</option>
 
@@ -70,7 +72,7 @@
             ?>
             </select>
 
-            <input  type="submit" name="pesquisar" value="Pesquisar">
+            <input type="submit" name="pesquisar" value="Pesquisar">
 
         </form>
 
@@ -188,16 +190,21 @@
         echo '<h1> Desculpe, sua busca não retornou resultados. </h1>';
     }
     else {
-        echo "Resultado da pesquisa de Produtos: <br><br>";
+        echo "<h1> Resultado da pesquisa de Produtos: </h1>";
         while ($dados = mysql_fetch_object($seleciona_produtos)) {
-            echo "<div id="">";
-            echo "<p> Nome:".$dados->nome." </p>";
-            echo "Descrição:".$dados->descricao." ";
-            echo "Cor: ".$dados->cor." ";
-            echo "Tamanho: ".$dados->tamanho." ";
-            echo "Preço R$: ".$dados->preco."<br>";
-            echo '<img src="imgbanco/'.$dados->foto1.'" height="150" width="150" />'." ";
-            echo '<img src="imgbanco/'.$dados->foto2.'" height="150" width="150" />'."<br><br>";
+            echo "<div id='divresult'>";
+            echo "<div id='divprods'>";
+            echo "<h2> Nome: </h2> <p>".$dados->nome." </p>";
+            echo "<h2> Descrição: </h2> <p>".$dados->descricao." </p>";
+            echo "<h2> Cor: </h2> <p>".$dados->cor." </p>";
+            echo "<h2> Tamanho: </h2> <p>".$dados->tamanho." ";
+            echo "<h2> Preço: </h2> <p>R$".$dados->preco." </p>";
+            echo "</div>";
+            echo "<div id='imgprods'>";
+            echo '<img src="imgbanco/'.$dados->foto1.'" height="250" width="250" />'." ";
+            echo '<img src="imgbanco/'.$dados->foto2.'" height="250" width="250" />'." ";
+            echo "</div>";
+            echo "</div>";
         }
     }
         
