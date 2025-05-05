@@ -109,9 +109,10 @@ if(isset($_POST['pesquisar'])){
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="pt-BR">
 
 <head>
+    <meta charset="UTF-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">   
     <title> Cadastrar Produto </title>
     <link rel="shortcut icon" href="icon.ico" /> 

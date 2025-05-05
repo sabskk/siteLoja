@@ -37,7 +37,7 @@ h1{
 
 header{
     display: flex;
-    background-color: rgb(57, 57, 66);
+    background-color: #292929;
     justify-content: center;
     align-items: center;
     padding: 10px 0px 10px 0px;
@@ -49,7 +49,7 @@ header{
 
 #barrapesquisa{
     display: flex;
-    background-color: rgb(145, 145, 145);
+    background-color: rgb(112 112 112);
     margin: 20px;
     border-radius: 15px;
 }
@@ -102,7 +102,7 @@ select{
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: rgb(145, 145, 145);
+    background-color: rgb(112 112 112);
     margin: 20px;
     border-radius: 15px;
     padding: 20px;
@@ -158,4 +158,37 @@ select{
     border-radius: 5px;
     border: none;
     margin: 5px;
+}
+
+.box{
+    background-color: #be1522;
+    color: white;
+    text-align: center;
+    padding: 10px;
+}
+
+.buy {
+    background-color: #be1522;
+    color: white;
+    padding: 10px 15px 10px 15px;
+    border-radius: 10px;
+    border: none;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+span{
+    position: absolute;
+    top: 30px;
+    right: 35px;
+    background-color: #be1522;
+    color: white;
+    font-size: 12px;
+    border-radius: 50%;
+    padding: 0px;
+    text-align: center;
+    min-width: 20px;
+    height: 20px;
+    line-height: 20px;
+    font-weight: bold;
 }

@@ -1,12 +1,45 @@
 <?php
     $connect = mysql_connect("localhost","root","");
     $db = mysql_select_db("loja");
+
+    session_start();
+    $status="";
+
+    if (isset($_POST['codigo']) && $_POST['codigo']!="") {
+        $codigo = $_POST['codigo'];
+        $resultado = mysql_query("SELECT nome, preco, foto1 FROM produto WHERE codigo = '$codigo'");
+
+        $row = mysql_fetch_assoc($resultado);
+
+        $nome = $row['nome'];
+        $preco = $row['preco'];
+        $foto1 = $row['foto1'];
+
+        $cartArray = array($codigo=>array('nome'=>$nome,'preco'=>$preco,'quantity'=>1,'foto'=>$foto1));
+
+        if(empty($_SESSION["shopping_cart"])) {
+            $_SESSION["shopping_cart"] = $cartArray;
+            $status = "<div class='box'> O produto foi adicionado ao carrinho! </div>";
+        }
+        else {
+            $array_keys = array_keys($_SESSION["shopping_cart"]);
+
+            if(in_array($codigo,$array_keys)) {
+                $status = "<div class='box'> Produto já está no carrinho! </div>";
+            }
+            else {
+                $_SESSION["shopping_cart"] = array_merge($_SESSION["shopping_cart"],$cartArray);
+                $status = "<div class='box'> Produto foi adicionado ao carrinho! </div>";
+            }
+        }
+    }
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="pt-BR">
 
 <head>
+    <meta charset="UTF-8">
     <title> Página Inicial </title>
     <link rel="shortcut icon" href="icon.ico" /> 
     <link rel="stylesheet" href="styles.css"><link rel="preconnect" href="https://fonts.googleapis.com">
@@ -19,9 +52,23 @@
     <header>
 
         <a href="pesquisa.php" id="logo"><img src="https://www.sportsstore.it/assets/img/logo.png" height=95></a>
-        <a href="login.php" id="logologin"><img src="https://img.icons8.com/?size=100&id=9ZgJRZwEc5Yj&format=png&color=FFFFFF" height=45></a>
-
+        <a href="login.php" id="logologin"><img src="https://img.icons8.com/?size=100&id=23400&format=png&color=FFFFFF" height=45></a>
+        <a href="carrinho.php">
+            <img src="https://img.icons8.com/?size=100&id=rMXM_J0hBtPS&format=png&color=FFFFFF" height=45>
+            <?php
+                if (!empty($_SESSION["shopping_cart"])) {
+                    $cart_count = count(array_keys($_SESSION["shopping_cart"]));
+                    echo "<span>$cart_count</span>";
+                }
+            ?>
+        </a>
+ 
     </header>
+
+    <div style="clear:both;"></div>
+        <div class="messagebox" style="margin:10px 0px;">
+        <?php echo $status; ?>
+    </div>
 
     <div id="barrapesquisa">
 
@@ -80,13 +127,13 @@
 
     <?php
     /* pesquisar produtos qdo carrega a pagina 1vez  */
-    $sql_produtos = "SELECT produto.nome,produto.descricao,produto.cor,produto.tamanho,produto.preco,produto.foto1,produto.foto2 FROM produto";                
+    $sql_produtos = "SELECT produto.codigo,produto.nome,produto.descricao,produto.cor,produto.tamanho,produto.preco,produto.foto1,produto.foto2 FROM produto";                
     $seleciona_produtos = mysql_query($sql_produtos);    
 
     if (isset($_POST['pesquisar'])) //verifica que a opção marca e modelo foi selecionada ou não
     {
     /* pesquisar produtos qdo pessiona pesquisar */
-    $sql_produtos = "SELECT produto.nome,produto.descricao,produto.cor,produto.tamanho,produto.preco,produto.foto1,produto.foto2
+    $sql_produtos = "SELECT produto.codigo,produto.nome,produto.descricao,produto.cor,produto.tamanho,produto.preco,produto.foto1,produto.foto2
                     FROM produto";
                                         
     $seleciona_produtos = mysql_query($sql_produtos);
@@ -192,20 +239,24 @@
     else {
         echo "<h1> Resultado da pesquisa de Produtos: </h1>";
         while ($dados = mysql_fetch_object($seleciona_produtos)) {
+            echo "<form method='post' action=''>";
             echo "<div id='divresult'>";
-            echo "<div id='divprods'>";
-            echo "<h2> Nome: </h2> <p>".$dados->nome." </p>";
-            echo "<h2> Descrição: </h2> <p>".$dados->descricao." </p>";
-            echo "<h2> Cor: </h2> <p>".$dados->cor." </p>";
-            echo "<h2> Tamanho: </h2> <p>".$dados->tamanho." ";
-            echo "<h2> Preço: </h2> <p>R$".$dados->preco." </p>";
+                echo "<div id='divprods'>";
+                    echo "<input type='hidden' name='codigo' value='{$dados->codigo}'>";
+                    echo "<h2> Nome: </h2> <p>".$dados->nome."</p>";
+                    echo "<h2> Descrição: </h2> <p>".$dados->descricao."</p>";
+                    echo "<h2> Cor: </h2> <p>".$dados->cor."</p>";
+                    echo "<h2> Tamanho: </h2> <p>".$dados->tamanho."</p>";
+                    echo "<h2> Preço: </h2> <p>R$".$dados->preco."</p>";
+                    echo "<button type='submit' class='buy'> Comprar </button>";
+                echo "</div>";
+                echo "<div id='imgprods'>";
+                    echo '<img src="imgbanco/'.$dados->foto1.'" height="250" width="250" />'." ";
+                    echo '<img src="imgbanco/'.$dados->foto2.'" height="250" width="250" />'." ";
+                echo "</div>";
             echo "</div>";
-            echo "<div id='imgprods'>";
-            echo '<img src="imgbanco/'.$dados->foto1.'" height="250" width="250" />'." ";
-            echo '<img src="imgbanco/'.$dados->foto2.'" height="250" width="250" />'." ";
-            echo "</div>";
-            echo "</div>";
+            echo "</form>";
         }
     }
-        
-    ?>
+?>
+
