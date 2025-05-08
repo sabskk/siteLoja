@@ -85,8 +85,17 @@ if(isset($_POST['pesquisar'])){
 
     <header>
 
-    <a href="pesquisa.php" id="logo"><img src="https://www.sportsstore.it/assets/img/logo.png" height=95></a>
-    <a href="login.php" id="logologin"><img src="https://img.icons8.com/?size=100&id=9ZgJRZwEc5Yj&format=png&color=FFFFFF" height=45></a>
+        <a href="pesquisa.php" id="logo"><img src="https://www.sportsstore.it/assets/img/logo.png" height=95></a>
+        <a href="login.php" id="logologin"><img src="https://img.icons8.com/?size=100&id=23400&format=png&color=FFFFFF" height=45></a>
+        <a href="carrinho.php">
+            <img src="https://img.icons8.com/?size=100&id=rMXM_J0hBtPS&format=png&color=FFFFFF" height=45>
+            <?php
+                if (!empty($_SESSION["shopping_cart"])) {
+                    $cart_count = count(array_keys($_SESSION["shopping_cart"]));
+                    echo "<span>$cart_count</span>";
+                }
+            ?>
+        </a>
 
     </header>
     
