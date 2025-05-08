@@ -239,7 +239,7 @@
     else {
         echo "<h1> Resultado da pesquisa de Produtos: </h1>";
         while ($dados = mysql_fetch_object($seleciona_produtos)) {
-            echo "<form method='post' action=''>";
+            echo "<form method='post' action='' id='formproducts'>";
             echo "<div id='divresult'>";
                 echo "<div id='divprods'>";
                     echo "<input type='hidden' name='codigo' value='{$dados->codigo}'>";
